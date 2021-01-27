@@ -19,11 +19,11 @@ Display team colour/category to read
 
 ## Learning
 
-Program clean functions
-OOP
-React interface eventually
+Program clean functions, OOP, React interface eventually
 
 ### Solution
+
+- local storage
 
 - team class
 - game class

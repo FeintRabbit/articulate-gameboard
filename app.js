@@ -1,21 +1,58 @@
-// import { category } from "./JS/category.js";
+import { category, timer } from "./JS/game.js";
 
-// manual import...
+// Variable selection
+const currentTeamDOM = document.querySelector("#current-team");
+const teamInfoDOM = document.querySelector("#team-info");
+const timerDOM = document.querySelector("#timer");
+const timerStartButton = document.querySelector("#timer-start");
+const scoreInput = document.querySelector("#score-input");
+const roundEndButton = document.querySelector("#round-end");
 
-const cardCategories = ["person", "world", "object", "action", "nature", "random"];
+// game set-up
+const teams = [
+  { name: "Team 1", position: 0 },
+  { name: "Team 2", position: 0 },
+  { name: "Team 3", position: 0 },
+];
 
-function category(position) {
-  const index = position - Math.floor(position / 6) * 6;
-  return cardCategories[index];
+const boardSpaces = 30;
+
+// game variables
+let currentTeam = 0;
+
+function render() {
+  const teamInfo = teams
+    .map(team => {
+      return `<article>
+              <p>Team: ${team.name}</p>
+              <p>Score: ${team.position}</p>
+              <p>Currently reading: ${category(team.position)}</p>
+            </article>`;
+    })
+    .join("");
+  teamInfoDOM.innerHTML = teamInfo;
+
+  currentTeamDOM.innerHTML = teams[currentTeam].name;
 }
-// end manual import
 
-let position = 6;
-let points = 7;
+// team round
 
-console.log("position: " + category(position));
+// render
+render();
 
-console.log("points: " + points);
+// round start
+timerStartButton.addEventListener("click", e => {
+  e.target.disabled = true;
+  timer(timerDOM);
+});
 
-position += points;
-console.log("position: " + category(position));
+// round end
+roundEndButton.addEventListener("click", () => {
+  if (scoreInput.value) teams[currentTeam].position += parseInt(scoreInput.value);
+  currentTeam++;
+  if (currentTeam > teams.length - 1) currentTeam = 0;
+  console.log(currentTeam);
+  render();
+  scoreInput.value = "";
+  console.log(teams[currentTeam]);
+});

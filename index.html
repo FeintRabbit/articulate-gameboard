@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Articulate!</title>
+  </head>
+  <body>
+    <!-- <section class="game-setup">
+      <input type="number" placeholder="Number of teams" />
+      <button>Go!</button>
+    </section> -->
+
+    <section class="game-round">
+      <div id="team-info"></div>
+      <br /><br />
+      <div>
+        <p>Current team: <span id="current-team"></span></p>
+        <p>Timer: <span id="timer">60</span></p>
+        <button id="timer-start">Start!</button>
+      </div>
+    </section>
+    <br /><br />
+    <section class="game-round">
+      <input type="number" id="score-input" placeholder="score" />
+      <button id="round-end">End Round</button>
+    </section>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
